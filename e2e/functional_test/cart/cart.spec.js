@@ -28,4 +28,19 @@ describe('home', function() {
       done();
     });
   });
+
+  it('カートの商品をクリア', function(done) {
+    // カードを見る
+    page.home.moveCartView().then(function(){
+      // カート画面に移動したら１番上の商品を削除する
+      return page.cart.clearCart();
+    }).then(function(){
+      // 商品の現在数確認
+      return !page.cart.cartItemEl.isPresent();
+    }).then(function(){
+      // カートの現在数確認
+      expect(page.cart.cartItemRowsEl.count()).toEqual(0);
+      done();
+    });
+  });
 });
