@@ -21,7 +21,6 @@ describe('Service: Purchase', function () {
     it('should return status ok', inject(function(Purchase){
       $httpBackend.expectPOST('/api/purchases').respond({'status':'ok','message':'transaction completed'});
       var p = Purchase;
-      console.log(p);
       var result = p.order();
       $httpBackend.flush();
       expect(result.status).toBe('ok');
