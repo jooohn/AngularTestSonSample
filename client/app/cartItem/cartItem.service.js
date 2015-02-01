@@ -77,6 +77,10 @@ angular.module('AngularJsTestson')
       getCartItems: function(){
         // [MEMO] 参照渡しなので取り扱い注意。値渡しにする場合は、cloneとかしてね
         return items;
+      },
+      getTotalCount: function(){
+        // TODO WIP
+        return 10;
       }
     };
     
