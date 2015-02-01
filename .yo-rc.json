@@ -23,7 +23,7 @@
     "filterDirectory": "client/app/",
     "serviceDirectory": "client/app/",
     "basePath": "client",
-    "moduleName": "",
+    "moduleName": "AngularJsTestson",
     "filters": [
       "uirouter"
     ],
