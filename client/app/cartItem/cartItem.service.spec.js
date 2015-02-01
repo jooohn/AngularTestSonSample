@@ -170,4 +170,22 @@ describe('Service: cartItem', function () {
 
   });
 
+  describe('getTotalAmount()のテスト', function(){
+
+    beforeEach(function(){
+      // 合計5件登録
+      cartItem.add(product[0]);
+      cartItem.add(product[0]);
+      cartItem.add(product[0]);
+      cartItem.add(product[1]);
+      cartItem.add(product[1]);
+    });
+
+    it('カートに登録されている商品の合計金額が取得できること', function() {
+      expect(cartItem.getCartItems().length).toBe(2);
+      expect(cartItem.getTotalAmount()).toBe(8000);
+    });
+
+  });
+
 });

@@ -84,6 +84,13 @@ angular.module('AngularJsTestson')
           totalCount += item.count;
         });
         return totalCount;
+      },
+      getTotalAmount: function(){
+        var totalAmount = 0;
+        angular.forEach(items, function(item){
+          totalAmount += item.totalAmount;
+        });
+        return totalAmount;
       }
     };
     
