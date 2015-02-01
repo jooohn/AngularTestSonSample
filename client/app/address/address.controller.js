@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('AngularJsTestson')
-  .controller('AddressCtrl', function ($scope, $http, $state, cartItem) {
+  .controller('AddressCtrl', function ($scope, $state, cartItem, Purchase, $log) {
     $scope.isLoading = false;
     $scope.payment = function(){
       $scope.isLoading=true;
+      $log.info(cartItem.items);
       var items=[];
       angular.forEach(cartItem.items, function(v){
         items.push({
@@ -12,33 +13,20 @@ angular.module('AngularJsTestson')
           quantity: 1
         });
       });
-      $http.post('/api/purchases', {
-        firstName   : $scope.order.firstName,
-        lastName    : $scope.order.lastName,
-        tel         : $scope.order.tel,
-        address     : $scope.order.address,
-        mailaddress : $scope.order.mailaddress,
-        purchases   : items
-      }).success(function(data){
+
+      var p = new Purchase();
+      p.firstName = $scope.order.firstName;
+      p.lastName = $scope.order.lastName;
+      p.tel = $scope.order.tel;
+      p.address = $scope.order.address;
+      p.mailaddress = $scope.order.mailaddress;
+      p.purchases = items;
+
+      $log.info(p);
+      p.$save(function(data){
         window.alert(data.message);
         cartItem.clear();
         $state.go('main.app.home');
       });
-    };
-  })
-
-  .directive('isTelephone', function () {
-    return {
-      require: 'ngModel',
-      restrict: 'A',
-      link: function (scope, element, attrs, ctrl) {
-
-        var reg = /^[0-9]+$/;
-
-        ctrl.$parsers.unshift(function(value){
-          ctrl.$setValidity('telephone', reg.test(value));
-          return value;
-        });
-      }
     };
   });
