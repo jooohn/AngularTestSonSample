@@ -17,13 +17,14 @@ describe('Service: Purchase', function () {
     $httpBackend = $injector.get('$httpBackend');
   }));
 
-  describe('$save', function(){
+  describe('order', function(){
     it('should return status ok', inject(function(Purchase){
       $httpBackend.expectPOST('/api/purchases').respond({'status':'ok','message':'transaction completed'});
-      var p = new Purchase();
-      p.$save();
+      var p = Purchase;
+      console.log(p);
+      var result = p.order();
       $httpBackend.flush();
-      expect(p.status).toBe('ok');
+      expect(result.status).toBe('ok');
     }));
   });
 });
