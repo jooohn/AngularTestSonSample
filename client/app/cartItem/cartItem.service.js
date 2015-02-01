@@ -77,6 +77,20 @@ angular.module('AngularJsTestson')
       getCartItems: function(){
         // [MEMO] 参照渡しなので取り扱い注意。値渡しにする場合は、cloneとかしてね
         return items;
+      },
+      getTotalCount: function(){
+        var totalCount = 0;
+        angular.forEach(items, function(item){
+          totalCount += item.count;
+        });
+        return totalCount;
+      },
+      getTotalAmount: function(){
+        var totalAmount = 0;
+        angular.forEach(items, function(item){
+          totalAmount += item.totalAmount;
+        });
+        return totalAmount;
       }
     };
     

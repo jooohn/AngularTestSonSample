@@ -3,7 +3,7 @@
 <div class="col-md-12">
   <ul class="list-group">
     <li class="list-group-item"
-        ng-repeat="(productId, item) in cartItems track by $index">
+        ng-repeat="item in cartItems">
       <p>商品名：{{item.productName}}</p>
       <p>￥{{item.price}}</p>
       <p>購入数：{{item.count}}</p>

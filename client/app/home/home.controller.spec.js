@@ -6,61 +6,57 @@ describe('Controller: HomeController', function () {
   beforeEach(module('AngularJsTestson'));
 
   var HomeCtrl, scope;
-var cartItems;
+  var cartItem;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope,_cartItem_) {
-   cartItems = _cartItem_;
+   cartItem = _cartItem_;
     scope = $rootScope.$new();
     HomeCtrl = $controller('HomeController', {
       $scope: scope
     });
   }));
 
-  it('should ...', function () {
-    expect(1).toEqual(1);
-  });
 
-/*
-  describe('HomeController',function(){
+  //messageTest_describe
+  describe('messageの確認',function(){
     it('$scope',function(){
       expect(scope.message).toBe('Hello AngularJsTestson home');
     })
   });
-*/
 
-/*
-  describe('HomeController',function(){
+
+  //cartItemTest_beforeEach
+  describe('CartItemの数量の確認(配列)',function(){
     beforeEach(function(){
-      scope.cartItems = [0,1,2,3];
+      scope.cartItem = [0,1,2,3];
     });
     it('$scope',function(){
-      expect(scope.cartItems.length).toBe(1);
+      expect(scope.cartItem.length).toBe(4);
     });
   });
-*/
 
-  describe('HomeController',function(){
-    var foo, bar = null;
 
+  //addCartTest_spyOn
+  describe('addCartの呼び出し回数を確認',function(){
     beforeEach(function() {
-      foo = {
-        setBar: function(value) {
-          bar = value;
-        }
-      };
-
-      spyOn(foo, 'setBar');
-
-      foo.setBar(123);
-      foo.setBar(456, 'another param');
-      foo.setBar(456, 'another param');
+      spyOn(cartItem, 'add');
+      cartItem.add();
     });
-
-    //呼び出し回数を追跡します
+    //呼び出し回数を追跡
     it("tracks its number of calls", function() {
-      expect(foo.setBar.calls.length).toEqual(3);
+      expect(cartItem.add.calls.length).toEqual(1);
     });
   });
+
+
+  //CartItemCountTest_spyOn
+  describe('getTotalCountの動作確認',function(){
+    beforeEach(function(){
+      spyOn(cartItem,'getTotalCount');
+      cartItem.getTotalCount();
+    });
+  });
+
 
 });

@@ -9,7 +9,7 @@
 var CartPage = function() {
 
   // repeater
-  var cartItem = '(productId, item) in cartItems';
+  var cartItem = 'item in cartItems';
   // エレメント
   this.cartItemRowsEl = element.all(by.repeater(cartItem));
   this.cartItemEl = element(by.repeater(cartItem));
@@ -32,6 +32,34 @@ var CartPage = function() {
       return cartBtn.click();
     });
   };
+
+  /**
+   * カート内指定の商品を追加
+   * @param cartRowNo
+   * @returns {*}
+   */
+  this.addCart = function(cartRowNo) {
+    var addBtn = element(by.repeater(cartItem).row(cartRowNo))
+      .element(by.css('.cart-add'));
+    return browser.wait(function() {
+      return addBtn.isPresent();
+    }, 10000, 'about add cart').then(function() {
+      return addBtn.click();
+    });
+  };
+
+  /**
+   * カートを空にする
+   * @returns {*}
+   */
+  this.clearCart = function() {
+    var clearBtn = element(by.css('.cart-clear'));
+    return browser.wait(function() {
+      return clearBtn.isPresent();
+    }, 10000, 'about clear cart').then(function() {
+      return clearBtn.click();
+    });
+  }
 };
 
 module.exports = new CartPage();
