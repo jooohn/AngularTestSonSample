@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('AngularJsTestson')
-  .factory('cartItem', function () {
+  .factory('cartItem', function ($log) {
 
     var items = [];
 
@@ -30,6 +30,14 @@ angular.module('AngularJsTestson')
 
     }
 
+    function decrement(index) {
+
+      items[index].count--;
+      items[index].totalAmount -= items[index].price;
+      return items;
+
+    }
+
     function append(product){
 
       var newProduct = {
@@ -53,10 +61,15 @@ angular.module('AngularJsTestson')
         return (index > -1) ? increment(index): append(product);
       },
       remove: function(productId) {
-        var index = indexOfCartItem(productId);
+        var index, product;
+        index = indexOfCartItem(productId);
         if(index > -1) {
-          items.splice(index, 1);
+          product = items[index];
+          return (product.count > 1) ? decrement(index) : items.splice(index, 1);
+        }else{
+          $log.warn('指定したproductIDがカート内に存在しません。productId=' + productId);
         }
+        return items;
       },
       clear: function() {
         items.length = 0;

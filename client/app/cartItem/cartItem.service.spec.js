@@ -7,10 +7,12 @@ describe('Service: cartItem', function () {
 
   // instantiate service
   var cartItem, 
+    $log,
     product = [];
 
-  beforeEach(inject(function (_cartItem_) {
+  beforeEach(inject(function (_cartItem_, _$log_) {
     cartItem = _cartItem_;
+    $log = _$log_;
     cartItem.clear();
 
     // dummy data
@@ -24,6 +26,8 @@ describe('Service: cartItem', function () {
       productId: 11,
       productName: 'AngularJSリファレンス'
     });
+
+    spyOn($log, 'warn');
 
   }));
 
@@ -69,16 +73,51 @@ describe('Service: cartItem', function () {
 
   describe('remove()のテスト', function(){
 
+    var actual;
+
     beforeEach(function(){
+      cartItem.add(product[0]);
       cartItem.add(product[0]);
       cartItem.add(product[1]);
     });
 
-    it('1件削除できること', function(){
+    it('削除後にまだ商品数が残る場合は、数量などが減少すること', function(){
+
       expect(cartItem.getCartItems().length).toBe(2);
+
+      actual = cartItem.getCartItems()[0];
+      expect(actual.productId).toBe(10);
+      expect(actual.count).toBe(2);
+      expect(actual.totalAmount).toBe(4000);
+
+      cartItem.remove(product[0].productId);
+      expect(cartItem.getCartItems().length).toBe(2);
+
+      actual = cartItem.getCartItems()[0];
+      expect(actual.productId).toBe(10);
+      expect(actual.count).toBe(1);
+      expect(actual.totalAmount).toBe(2000);
+
+    });
+    
+    it('削除後に商品数が0になる場合は、レコードごと削除されること', function(){
+
+      expect(cartItem.getCartItems().length).toBe(2);      
       cartItem.remove(product[1].productId);
       expect(cartItem.getCartItems().length).toBe(1);
-      expect(cartItem.getCartItems()[0].productId).toBe(10);
+
+      actual = cartItem.getCartItems()[0];
+      expect(actual.productId).toBe(10);
+      expect(actual.count).toBe(2);
+      expect(actual.totalAmount).toBe(4000);
+
+    });
+
+    it('productIdが存在しない場合はwarnログを出力すること', function(){
+      expect(cartItem.getCartItems().length).toBe(2);      
+      cartItem.remove('hoge');
+      expect(cartItem.getCartItems().length).toBe(2);      
+      expect($log.warn).toHaveBeenCalledWith('指定したproductIDがカート内に存在しません。productId=hoge');
     });
 
   });
