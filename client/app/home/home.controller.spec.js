@@ -6,10 +6,11 @@ describe('Controller: HomeController', function () {
   beforeEach(module('AngularJsTestson'));
 
   var HomeCtrl, scope;
+var cartItems;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope,_cartItem_) {
-   var cartItems = _cartItem_;
+   cartItems = _cartItem_;
     scope = $rootScope.$new();
     HomeCtrl = $controller('HomeController', {
       $scope: scope
@@ -40,11 +41,25 @@ describe('Controller: HomeController', function () {
 */
 
   describe('HomeController',function(){
-    beforeEach(function(){
-      scope.addCart = [0,1,2,3];
+    var foo, bar = null;
+
+    beforeEach(function() {
+      foo = {
+        setBar: function(value) {
+          bar = value;
+        }
+      };
+
+      spyOn(foo, 'setBar');
+
+      foo.setBar(123);
+      foo.setBar(456, 'another param');
+      foo.setBar(456, 'another param');
     });
-    it('$scope',function(product){
-      expect(scope.addCart(product)).toBe(1);
+
+    //呼び出し回数を追跡します
+    it("tracks its number of calls", function() {
+      expect(foo.setBar.calls.length).toEqual(3);
     });
   });
 
