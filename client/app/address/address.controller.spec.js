@@ -44,4 +44,16 @@ describe('Controller: AddressCtrl', function () {
     expect($state.go).toHaveBeenCalledWith('main.app.home');
     expect(_cartItem.getCartItems().length).toBe(0);
   }));
+
+  describe('behavior on empty cart', function(){
+    beforeEach(inject(function($controller){
+      _cartItem.clear();
+      AddressCtrl = $controller('AddressCtrl', {
+        $scope: scope
+      });
+    }));
+    it('redirects to home when no item exists in the cart', inject(function($state){
+      expect($state.go).toHaveBeenCalledWith('main.app.home');
+    }));
+  });
 });

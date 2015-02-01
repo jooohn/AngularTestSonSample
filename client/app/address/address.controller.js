@@ -2,6 +2,9 @@
 
 angular.module('AngularJsTestson')
   .controller('AddressCtrl', function ($scope, $state, cartItem, Purchase, $window) {
+    if(cartItem.getCartItems().length === 0) {
+      $state.go('main.app.home');
+    }
     $scope.isLoading = false;
     $scope.order = Purchase;
 
