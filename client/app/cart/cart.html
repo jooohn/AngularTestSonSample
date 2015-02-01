@@ -6,7 +6,7 @@
         ng-repeat="item in cartItems">
       <p>商品名：{{item.productName}}</p>
       <p>￥{{item.price}}</p>
-      <p>購入数：{{item.count}}</p>
+      <p>購入数：<span class="product-count">{{item.count}}</span></p>
       <button type="button" class="btn btn-info cart-add"
               ng-click="addCart(item.product)">さらにカートに追加</button>
       <button type="button" class="btn btn-warning cart-remove"

@@ -59,7 +59,17 @@ var CartPage = function() {
     }, 10000, 'about clear cart').then(function() {
       return clearBtn.click();
     });
-  }
+  };
+
+  this.countCart = function(cartRowNo) {
+    var item = element(by.repeater(cartItem).row(cartRowNo))
+      .element(by.css('.product-count'));
+    return browser.wait(function() {
+      return item.isPresent();
+    }, 10000, 'about count cart').then(function() {
+      return item.getText();
+    });
+  };
 };
 
 module.exports = new CartPage();

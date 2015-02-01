@@ -29,6 +29,21 @@ describe('home', function() {
     });
   });
 
+  it('カートの商品を1つ追加', function(done) {
+    // カードを見る
+    page.home.moveCartView().then(function(){
+      return page.cart.countCart('0');
+    }).then(function(count) {
+      expect(count).toEqual('1');
+      return page.cart.addCart('0');
+    }).then(function() {
+      return page.cart.countCart('0');
+    }).then(function(count) {
+      expect(count).toEqual('2');
+      done();
+    });
+  });
+
   it('カートの商品をクリア', function(done) {
     // カードを見る
     page.home.moveCartView().then(function(){
