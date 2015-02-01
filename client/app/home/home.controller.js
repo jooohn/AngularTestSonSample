@@ -21,7 +21,7 @@ angular.module('AngularJsTestson')
     };
 
     $scope.CartItemCount = function(){
-      return cartItem.getCartItems();
+      return cartItem.getTotalCount();
     };
 
   });
