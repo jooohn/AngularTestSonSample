@@ -61,6 +61,11 @@ var CartPage = function() {
     });
   };
 
+  /**
+   * 購入数を取得する
+   * @param cartRowNo
+   * @returns {*}
+   */
   this.countCart = function(cartRowNo) {
     var item = element(by.repeater(cartItem).row(cartRowNo))
       .element(by.css('.product-count'));
