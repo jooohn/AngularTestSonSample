@@ -43,8 +43,8 @@ describe('Controller: HomeController', function () {
     beforeEach(function(){
       scope.addCart = [0,1,2,3];
     });
-    it('$scope',function(){
-      expect(scope.addCart).toBe(1);
+    it('$scope',function(product){
+      expect(scope.addCart(product)).toBe(1);
     });
   });
 

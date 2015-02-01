@@ -10,8 +10,14 @@ angular.module('AngularJsTestson')
       $scope.products = data;
     });
 
+/*
     $scope.addCart = function(index) {
       cartItem.add($scope.products[index]);
+    };
+*/
+
+    $scope.addCart = function(products) {
+      cartItem.add(products);
     };
 
     $scope.CartItemCount = function(){
