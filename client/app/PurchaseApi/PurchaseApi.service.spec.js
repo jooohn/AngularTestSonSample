@@ -1,3 +1,4 @@
+/* jshint camelcase:false */
 'use strict';
 
 describe('Service: PurchaseApi', function () {
@@ -6,13 +7,21 @@ describe('Service: PurchaseApi', function () {
   beforeEach(module('AngularJsTestson'));
 
   // instantiate service
-  var PurchaseApi;
+  var PurchaseApi, $httpBackend;
   beforeEach(inject(function (_PurchaseApi_) {
     PurchaseApi = _PurchaseApi_;
   }));
 
-  it('should do something', function () {
-    expect(!!PurchaseApi).toBe(true);
+  beforeEach(inject(function($injector){
+    $httpBackend = $injector.get('$httpBackend');
+  }));
+
+  describe('$save', function(){
+    it('should post something', inject(function(PurchaseApi) {
+      $httpBackend.expectPOST('/api/purchases').respond({'status':'ok','message':'transaction completed'});
+      var p = new PurchaseApi();
+      p.$save();
+    }));
   });
 
 });
