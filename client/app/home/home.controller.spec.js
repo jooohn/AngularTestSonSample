@@ -17,13 +17,9 @@ describe('Controller: HomeController', function () {
     });
   }));
 
-  it('should ...', function () {
-    expect(1).toEqual(1);
-  });
-
 
   //messageTest_describe
-  describe('HomeController',function(){
+  describe('messageの確認',function(){
     it('$scope',function(){
       expect(scope.message).toBe('Hello AngularJsTestson home');
     })
@@ -31,7 +27,7 @@ describe('Controller: HomeController', function () {
 
 
   //cartItemTest_beforeEach
-  describe('HomeController',function(){
+  describe('CartItemの数量の確認(配列)',function(){
     beforeEach(function(){
       scope.cartItem = [0,1,2,3];
     });
@@ -41,8 +37,8 @@ describe('Controller: HomeController', function () {
   });
 
 
+  //addCartTest_spyOn
   describe('HomeController',function(){
-    //spyOn
     beforeEach(function() {
       spyOn(cartItem, 'add');
       cartItem.add();
@@ -52,5 +48,14 @@ describe('Controller: HomeController', function () {
       expect(cartItem.add.calls.length).toEqual(1);
     });
   });
+
+
+  //CartItemCountTest_spyOn
+  deiscribe('HomeControler',function(){
+    beforeEach(function(){
+      spyOn(getCartItems,'');
+    });
+  });
+
 
 });
