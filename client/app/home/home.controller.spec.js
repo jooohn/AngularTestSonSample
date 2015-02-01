@@ -53,8 +53,8 @@ describe('Controller: HomeController', function () {
   //CartItemCountTest_spyOn
   describe('getTotalCountの動作確認',function(){
     beforeEach(function(){
-      spyOn(cartItem,'getTotalCount');
-      cartItem.getTotalCount();
+      spyOn(HomeCtrl,'getTotalCount');
+      HomeCtrl.getTotalCount();
     });
   });
 

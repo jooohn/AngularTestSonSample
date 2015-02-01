@@ -1,11 +1,11 @@
 <h1 class="homepage-title">{{home.message}}</h1>
 <div ui-sref="main.app.address()"
      class="btn btn-info item-buy"
-     ng-disabled="!CartItemCount()">購入する</div>
+     ng-disabled="!cartItemCount()">購入する</div>
 <div ui-sref="main.app.cart()"
      class="btn btn-info item-viewcart"
-     ng-disabled="!CartItemCount()">カートを見る
-       <span ng-if="CartItemCount()">({{CartItemCount()}})</span>
+     ng-disabled="!cartItemCount()">カートを見る
+       <span ng-if="cartItemCount()">({{cartItemCount()}})</span>
 </div>
 <ul class="list-group">
   <li class="list-group-item" ng-repeat="product in products as results">
