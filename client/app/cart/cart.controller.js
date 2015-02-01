@@ -3,39 +3,17 @@
 angular.module('AngularJsTestson')
   .controller('CartCtrl', function ($scope, cartItem) {
 
-    var cartItems = cartItem.items;
-    
+    $scope.cartItems = cartItem.getCartItems();
 
-    var refresh = function(){
-      $scope.cartItems = {};
-      angular.forEach(cartItems, function(v){
-        if ($scope.cartItems[v.productId]){
-          $scope.cartItems[v.productId].count++;
-        }else{
-          $scope.cartItems[v.productId] = {
-            productName: v.productName,
-            price: v.price,
-            count: 1,
-            cartObject: v
-          };
-        }
-      });
-    };
-    refresh();
-
-    $scope.addCart = function(index) {
-      cartItem.add($scope.cartItems[index].cartObject);
-      refresh();
+    $scope.addCart = function(product) {
+      cartItem.add(product);
     };
 
-    $scope.removeCart = function(index) {
-      cartItem.removeProductId(index);
-      refresh();
+    $scope.removeCart = function(product) {
+      cartItem.remove(product.productId);
     };
 
     $scope.clearCart = function() {
       cartItem.clear();
-      refresh();
     };
-
   });

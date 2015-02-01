@@ -8,3 +8,4 @@ dist
 report/*
 /server/config/local.env.js
 npm-debug.log
+*.iml
