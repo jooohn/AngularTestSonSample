@@ -16,7 +16,7 @@
                    placeholder="じぇいえす" required>
           </div>
           <div class="col-sm-2"></div>
-          <div class="form-group col-sm-10">
+          <div class="form-group col-sm-10 message-name">
             <p><span ng-show="purch_form.lastName.$error.required" class="text-danger"> 名前(姓)は必須です</span>
             <p><span ng-show="purch_form.firstName.$error.required" class="text-danger"> 名前(名)は必須です</span>
           </div>
@@ -29,7 +29,7 @@
                      class="form-control" id="tel" name="tel" placeholder="999-9999-9999">
             </div>
             <div ng-show="purch_form.tel.$invalid" class="col-sm-2"></div>
-            <div ng-show="purch_form.tel.$invalid" class="text-danger col-sm-10">
+            <div ng-show="purch_form.tel.$invalid" class="text-danger col-sm-10 message-tel">
               <span ng-show="purch_form.tel.$error.required">電話番号は必須です</span>
               <span ng-show="purch_form.tel.$error.telephone"><p>電話番号は数値のみ入力できます</span>
             </div>
@@ -42,7 +42,7 @@
                      class="form-control" id="address" name="address" placeholder="東京都渋谷区東1-2-20 ">
             </div>
             <div ng-show="purch_form.address.$error.required" class="col-sm-2"></div>
-            <span ng-show="purch_form.address.$error.required" class="text-danger col-sm-10"> 住所は必須です</span>
+            <span ng-show="purch_form.address.$error.required" class="text-danger col-sm-10 message-address"> 住所は必須です</span>
           </div>
 
           <div class="form-group">
@@ -53,12 +53,12 @@
             </div>
           </div>
           <div ng-show="purch_form.mail.$invalid" class="col-sm-2"></div>
-          <div ng-show="purch_form.mail.$invalid" class="text-danger col-sm-10">
+          <div ng-show="purch_form.mail.$invalid" class="text-danger col-sm-10 message-mail">
             <span ng-show="purch_form.mail.$error.required">メールアドレスは必須です</span>
             <span ng-show="purch_form.mail.$error.email">メールアドレス形式でありません</span>
           </div>
         </div>
-        <button ng-show="purch_form.$valid" type="button" class="btn btn-danger pull-right" ng-click="payment()">
+        <button ng-show="purch_form.$valid" type="button" class="btn btn-danger pull-right btn-payment" ng-click="payment()">
           <span ng-if="!isLoading">決済する</span>
           <span ng-if="isLoading"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> 購入中...</span>
         </button>
