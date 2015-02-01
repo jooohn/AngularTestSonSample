@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('AngularJsTestson')
-  .controller('HomeController', function($scope, $http, cartItem){
+  .controller('HomeController', function($scope, $http, _cartItem_){
 
     $scope.message = 'Hello AngularJsTestson home';
     $scope.cartItems = [];

@@ -8,7 +8,8 @@ describe('Controller: HomeController', function () {
   var HomeCtrl, scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope,_cartItem_) {
+   var cartItems = _cartItem_;
     scope = $rootScope.$new();
     HomeCtrl = $controller('HomeController', {
       $scope: scope
@@ -18,4 +19,33 @@ describe('Controller: HomeController', function () {
   it('should ...', function () {
     expect(1).toEqual(1);
   });
+
+/*
+  describe('HomeController',function(){
+    it('$scope',function(){
+      expect(scope.message).toBe('Hello AngularJsTestson home');
+    })
+  });
+*/
+
+/*
+  describe('HomeController',function(){
+    beforeEach(function(){
+      scope.cartItems = [0,1,2,3];
+    });
+    it('$scope',function(){
+      expect(scope.cartItems.length).toBe(1);
+    });
+  });
+*/
+
+  describe('HomeController',function(){
+    beforeEach(function(){
+      scope.addCart = [0,1,2,3];
+    });
+    it('$scope',function(){
+      expect(scope.addCart).toBe(1);
+    });
+  });
+
 });
