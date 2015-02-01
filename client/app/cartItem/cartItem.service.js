@@ -79,8 +79,11 @@ angular.module('AngularJsTestson')
         return items;
       },
       getTotalCount: function(){
-        // TODO WIP
-        return 10;
+        var totalCount = 0;
+        angular.forEach(items, function(item){
+          totalCount += item.count;
+        });
+        return totalCount;
       }
     };
     
