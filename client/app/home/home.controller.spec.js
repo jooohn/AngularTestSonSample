@@ -50,12 +50,13 @@ describe('Controller: HomeController', function () {
   });
 
 
-  // //CartItemCountTest_spyOn
-  // deiscribe('HomeControler',function(){
-  //   beforeEach(function(){
-  //     spyOn(getCartItems,'');
-  //   });
-  // });
+  //CartItemCountTest_spyOn
+  describe('HomeControler',function(){
+    beforeEach(function(){
+      spyOn(cartItem,'getTotalCount');
+      cartItem.getTotalCount();
+    });
+  });
 
 
 });
