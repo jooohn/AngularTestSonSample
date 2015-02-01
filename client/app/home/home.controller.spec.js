@@ -6,11 +6,11 @@ describe('Controller: HomeController', function () {
   beforeEach(module('AngularJsTestson'));
 
   var HomeCtrl, scope;
-  var cartItems;
+  var cartItem;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope,_cartItem_) {
-   cartItems = _cartItem_;
+   cartItem = _cartItem_;
     scope = $rootScope.$new();
     HomeCtrl = $controller('HomeController', {
       $scope: scope
@@ -21,42 +21,35 @@ describe('Controller: HomeController', function () {
     expect(1).toEqual(1);
   });
 
-/*
+
+  //messageTest_describe
   describe('HomeController',function(){
     it('$scope',function(){
       expect(scope.message).toBe('Hello AngularJsTestson home');
     })
   });
-*/
 
-/*
+
+  //cartItemTest_beforeEach
   describe('HomeController',function(){
     beforeEach(function(){
-      scope.cartItems = [0,1,2,3];
+      scope.cartItem = [0,1,2,3];
     });
     it('$scope',function(){
-      expect(scope.cartItems.length).toBe(1);
+      expect(scope.cartItem.length).toBe(4);
     });
   });
-*/
+
 
   describe('HomeController',function(){
-    var cartItems, bar = null;
-
-    beforeEach(function() {
-      cartItems = {
-        add: function(product) {
-          bar = product;
-        }
-      };
     //spyOn
-      spyOn(cartItems, 'add');
-      cartItems.add();
+    beforeEach(function() {
+      spyOn(cartItem, 'add');
+      cartItem.add();
     });
-
     //呼び出し回数を追跡
     it("tracks its number of calls", function() {
-      expect(cartItems.add.calls.length).toEqual(3);
+      expect(cartItem.add.calls.length).toEqual(1);
     });
   });
 
