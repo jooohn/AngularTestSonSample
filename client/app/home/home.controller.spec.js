@@ -22,7 +22,7 @@ describe('Controller: HomeController', function () {
   describe('messageの確認',function(){
     it('$scope',function(){
       expect(scope.message).toBe('Hello AngularJsTestson home');
-    })
+    });
   });
 
 
@@ -44,7 +44,7 @@ describe('Controller: HomeController', function () {
       cartItem.add();
     });
     //呼び出し回数を追跡
-    it("tracks its number of calls", function() {
+    it('tracks its number of calls', function() {
       expect(cartItem.add.calls.length).toEqual(1);
     });
   });
