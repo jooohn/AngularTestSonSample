@@ -38,7 +38,7 @@ describe('Controller: HomeController', function () {
 
 
   //addCartTest_spyOn
-  describe('HomeController',function(){
+  describe('addCartの呼び出し回数を確認',function(){
     beforeEach(function() {
       spyOn(cartItem, 'add');
       cartItem.add();
@@ -51,7 +51,7 @@ describe('Controller: HomeController', function () {
 
 
   //CartItemCountTest_spyOn
-  describe('HomeControler',function(){
+  describe('getTotalCountの動作確認',function(){
     beforeEach(function(){
       spyOn(cartItem,'getTotalCount');
       cartItem.getTotalCount();
